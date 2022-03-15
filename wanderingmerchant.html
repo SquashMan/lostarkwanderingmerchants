@@ -1,0 +1,212 @@
+
+<div id="container">
+    <div class="persist"><b>Name</b></div>
+    <div class="persist"><b>Zone</b></div>
+    <div class="persist"><b>Spawn timer</b></div>
+    <div class="persist"><b>Map</b></div>
+</div>
+<style type="text/css">
+    #container {
+        background-color: #EEEEEE;
+        border: 1px solid #CECECE;
+        width: 50vw;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 20% 25% 50% 5%;
+        row-gap: 20px;
+        padding: 50px;
+        font-size: 16px;
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    @media (max-width: 1300px) { 
+        #container {
+            font-size: 12px;
+            width: 80vw;
+        }
+    }
+
+</style>
+<script type="text/javascript">
+    const merchants = [
+    {
+        name: 'Ben',
+        zone: 'Rethramis',
+        schedule: [
+            0, 3, 4, 6, 7, 10, 12, 15, 16, 18, 19, 22
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#ben',
+        nextSpawn: ''
+    },
+    {
+        name: 'Peter',
+        zone: 'North Vern',
+        schedule: [
+            0, 3, 4, 6, 7, 10, 12, 15, 16, 18, 19, 22
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#peter',
+        nextSpawn: ''
+    },
+    {
+        name: 'Laitir',
+        zone: 'Yorn',
+        schedule: [
+            0, 3, 4, 6, 7, 10, 12, 15, 16, 18, 19, 22
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#laitir',
+        nextSpawn: ''
+    },
+    {
+        name: 'Lucas',
+        zone: 'Yudia',
+        schedule: [
+            1, 4, 5, 7, 8, 11, 13, 16, 17, 19, 20, 23
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#lucas',
+        nextSpawn: ''
+    },
+    {
+        name: 'Morris',
+        zone: 'East Luterra',
+        schedule: [
+            1, 4, 5, 7, 8, 11, 13, 16, 17, 19, 20, 23
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#morris',
+        nextSpawn: ''
+    },
+    {
+        name: 'Mac',
+        zone: 'Anikka',
+        schedule: [
+            1, 4, 5, 7, 8, 11, 13, 16, 17, 19, 20, 23
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#mac',
+        nextSpawn: ''
+    },
+    {
+        name: 'Jeffrey',
+        zone: 'Shushire',
+        schedule: [
+            1, 4, 5, 7, 8, 11, 13, 16, 17, 19, 20, 23
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#jeffrey',
+        nextSpawn: ''
+    },
+    {
+        name: 'Dorella',
+        zone: 'Feiton',
+        schedule: [
+            1, 4, 5, 7, 8, 11, 13, 16, 17, 19, 20, 23
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#dorella',
+        nextSpawn: ''
+    },
+    {
+        name: 'Malone',
+        zone: 'West Luterra',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#malone',
+        nextSpawn: ''
+    },
+    {
+        name: 'Burt',
+        zone: 'East Luterra',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#burt',
+        nextSpawn: ''
+    },
+    {
+        name: 'Oliver',
+        zone: 'Tortoyk',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#oliver',
+        nextSpawn: ''
+    },
+    {
+        name: 'Nox',
+        zone: 'Arthetine',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#nox',
+        nextSpawn: ''
+    },
+    {
+        name: 'Aricer',
+        zone: 'Rohendel',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#aricer',
+        nextSpawn: ''
+    },
+    {
+        name: 'Rayni',
+        zone: 'Punika',
+        schedule: [
+            0, 2, 5, 6, 8, 9, 12, 14, 17, 18, 20, 21
+        ],
+        link: 'https://thenerdstash.com/lost-ark-wandering-merchant-guide/#rayni',
+        nextSpawn: ''
+    }
+    ];
+    const container = document.querySelector('#container');
+    function buildList() {
+        let now = new Date();
+        document.querySelectorAll('#container > *:not(.persist)').forEach(node => {
+            node.remove();
+        });
+        merchants.forEach((m) => {
+            let nextSpawn = m.schedule.find(hour => (hour === now.getHours() && now.getMinutes() < 56) || hour > now.getHours());
+            if (!nextSpawn) {
+                nextSpawn = m.schedule[0];
+            }
+            if (nextSpawn === now.getHours() && now.getMinutes() > 30 && now.getMinutes() < 56) {
+                m.nextSpawn = `Up for another ${55 - now.getMinutes()} minutes`;
+                m.timeToSpawn = 0;
+            } else if (nextSpawn === now.getHours()) {
+                m.nextSpawn = `${nextSpawn}:30 - spawns in ${30 - now.getMinutes()} minutes`;
+                m.timeToSpawn = 0;
+            } else {
+                let nextHour = nextSpawn - now.getHours();
+                if (nextHour < 0) {
+                    nextHour += 24;
+                }
+                let nextMinute = 30 - now.getMinutes();
+                if (nextMinute < 0) {
+                    nextMinute += 60;
+                    nextHour--;
+                }
+                m.nextSpawn = `${nextSpawn}:30 - spawns in ${nextHour} hour${nextHour === 1 ? '' : 's'} and ${nextMinute} minutes`;
+                m.timeToSpawn = nextHour;
+            }
+        })
+        const sortedMerchants = merchants.sort(function (a, b) {
+            return a.timeToSpawn - b.timeToSpawn;
+        });
+        sortedMerchants.forEach((m) => {
+            let merchant = document.createElement('div');
+            let name = document.createElement('div');
+            name.append(m.name);
+            let zone = document.createElement('div');
+            zone.append(m.zone);
+            let spawn = document.createElement('div');
+            spawn.append(m.nextSpawn);
+            let link = document.createElement('a');
+            link.href = m.link;
+            link.target = '_blank';
+            link.append('Link');
+            container.append(name);
+            container.append(zone);
+            container.append(spawn);
+            container.append(link);
+        })
+    }
+    buildList();
+    setInterval(buildList, 60000);
+</script>

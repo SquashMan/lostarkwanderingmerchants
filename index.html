@@ -168,7 +168,7 @@
             }
             if (nextSpawn === now.getHours() && now.getMinutes() > 30 && now.getMinutes() < 56) {
                 m.nextSpawn = `Up for another ${55 - now.getMinutes()} minutes`;
-                m.timeToSpawn = 0;
+                m.timeToSpawn = -1;
             } else if (nextSpawn === now.getHours()) {
                 m.nextSpawn = `${nextSpawn}:30 - spawns in ${30 - now.getMinutes()} minutes`;
                 m.timeToSpawn = 0;

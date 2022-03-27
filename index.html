@@ -1,4 +1,4 @@
-
+<center>Sommertid: <input id="sommertid" type="checkbox" /></center>
 <div id="container">
     <div class="persist"><b>Name</b></div>
     <div class="persist"><b>Zone</b></div>
@@ -156,6 +156,8 @@
     }
     ];
     const container = document.querySelector('#container');
+    let isItDST = parseInt(localStorage.getItem('DST')) || 0;
+    
     function buildList() {
         let now = new Date();
         document.querySelectorAll('#container > *:not(.persist)').forEach(node => {
@@ -164,7 +166,7 @@
         merchants.forEach((m) => {
             let nextSpawn = m.schedule.find(hour => (hour === now.getHours() && now.getMinutes() < 56) || hour > now.getHours());
             if (!nextSpawn) {
-                nextSpawn = m.schedule[0];
+                nextSpawn = m.schedule.find(x=>x!==undefined);
             }
             if (nextSpawn === now.getHours() && now.getMinutes() > 30 && now.getMinutes() < 56) {
                 m.nextSpawn = `Up for another ${55 - now.getMinutes()} minutes`;
@@ -207,6 +209,39 @@
             container.append(link);
         })
     }
+    function setDSTTimesInData() {
+        merchants.forEach((m) => {
+            const newSchedule = [];
+            m.schedule.forEach((s) => {
+                if (isItDST) {
+                    let spawn = s===23 ? 0 : s+1;
+                    newSchedule[spawn] = spawn;
+                } else {
+                    let spawn = s===0 ? 23 : s-1;
+                    newSchedule[spawn] = spawn;
+                }
+            })
+            m.schedule = newSchedule;
+        })
+    }
+    function toggleDST() {
+        if (isItDST) {
+            localStorage.setItem('DST', 0);
+            isItDST = 0;
+        } else {
+            localStorage.setItem('DST', 1);
+            isItDST = 1;
+        }
+        setDSTTimesInData();
+        buildList();
+    }
+    if (isItDST) {
+        document.querySelector('#sommertid').setAttribute('checked', 'checked');
+        setDSTTimesInData();
+    } else {
+        document.querySelector('#sommertid').removeAttribute('checked');
+    }
+    document.querySelector('#sommertid').addEventListener('click', toggleDST);
     buildList();
     setInterval(buildList, 60000);
 </script>

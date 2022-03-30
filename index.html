@@ -1,4 +1,4 @@
-<center>Sommertid: <input id="sommertid" type="checkbox" /></center>
+<center>Sommertid: <input id="sommertid" type="checkbox" />   Alert ved spawn: <input id="alertonspawn" type="checkbox" /></center>
 <div id="container">
     <div class="persist"><b>Name</b></div>
     <div class="persist"><b>Zone</b></div>
@@ -157,6 +157,7 @@
     ];
     const container = document.querySelector('#container');
     let isItDST = parseInt(localStorage.getItem('DST')) || 0;
+    let isAlertOnSpawn = parseInt(localStorage.getItem('AlertOnSpawn')) || 0;
     
     function buildList() {
         let now = new Date();
@@ -208,6 +209,9 @@
             container.append(spawn);
             container.append(link);
         })
+        if (now.getMinutes() === 30 && isAlertOnSpawn) {
+            alert('Merchants spawner nu, Peter!');
+        }
     }
     function setDSTTimesInData() {
         merchants.forEach((m) => {
@@ -241,7 +245,24 @@
     } else {
         document.querySelector('#sommertid').removeAttribute('checked');
     }
+
+    function toggleAlert() {
+        if (isAlertOnSpawn) {
+            localStorage.setItem('AlertOnSpawn', 0);
+            isAlertOnSpawn = 0;
+        } else {
+            localStorage.setItem('AlertOnSpawn', 1);
+            isAlertOnSpawn = 1;
+        }
+        buildList();
+    }
+    if (isAlertOnSpawn) {
+        document.querySelector('#sommertid').setAttribute('checked', 'checked');
+    } else {
+        document.querySelector('#sommertid').removeAttribute('checked');
+    }
     document.querySelector('#sommertid').addEventListener('click', toggleDST);
+    document.querySelector('#alertonspawn').addEventListener('click', toggleAlert);
     buildList();
     setInterval(buildList, 60000);
 </script>

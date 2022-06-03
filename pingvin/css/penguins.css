@@ -1,0 +1,119 @@
+
+/* Themes */
+
+/* Spooky */
+.spooky .feet > div {
+    background-color: black;
+}
+.spooky .beak {
+    border-top: 15px solid darkred;
+}
+.spooky .eyes > div {
+    background-color: darkred;
+}
+.spooky .body {
+    background-color: #ff9a00;
+}
+.spooky .belly {
+    background-color: darkred;
+}
+
+/* Ghost */
+.ghost .feet > div {
+    display: none;
+}
+.ghost .beak {
+    border-top: 15px solid blue;
+}
+.ghost .eyes > div {
+    background-color: brown;
+}
+.ghost .body {
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 100%);
+    border-radius: 0px 0px 10px 10px;
+}
+.ghost .belly {
+    display: none;
+}
+
+/* Emma */
+
+.emma .eyes > div {
+    background-color: black;
+}
+
+.emma .body {
+    background-color: rgb(219, 101, 204);
+}
+
+/* Victoria */
+
+.victoria .eyes > div {
+    background-color: blue;
+}
+
+.victoria .body {
+    background-color: red;
+}
+
+.victoria .beak {
+    border-top: 15px solid white;
+}
+
+.victoria .belly {
+    background-color: darkgreen;
+}
+
+.victoria .feet > div {
+    background-color: lightskyblue;
+}
+
+/* Mor */
+
+.mor .eyes > div {
+    background-color: blue;
+}
+
+.mor .body {
+    background-color: red;
+}
+
+.mor .beak {
+    border-top: 15px solid black;
+}
+
+.mor .belly {
+    background-color: white;
+}
+
+.mor .feet > div {
+    background-color: black;
+}
+
+/* Big */
+#penguin.big .body {
+    transform: scale(2);
+}
+#penguin.crouching.big .body {
+    transform: scale(2) translateY(20px);
+}
+#penguin.jumping.big .body {
+    transform: scale(2) translateY(-50px);
+}
+#penguin.big ~ #heart {
+    transform: scale(2);
+}
+
+/* Small */
+#penguin.small .body {
+    transform: scale(0.5);
+}
+#penguin.crouching.small .body {
+    transform: scale(0.5) translateY(40px);
+}
+#penguin.jumping.small .body {
+    transform: scale(0.5) translateY(-180px);
+}
+#penguin.small ~ #heart {
+    transform: scale(0.5);
+}

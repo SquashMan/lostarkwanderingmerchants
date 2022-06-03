@@ -1,0 +1,164 @@
+@keyframes happyFeetLeft {
+    0%   { height: 10px; }
+    50%  { height: 6px; }
+    100% { height: 10px; }
+}
+@keyframes happyFeetRight {
+    0%   { height: 6px;  }
+    50%  { height: 10px; }
+    100% { height: 6px; }
+}
+@keyframes waddle {
+    0%   { transform: rotate(0deg); }
+    25%   { transform: rotate(-10deg); }
+    75%   { transform: rotate(10deg); }
+    100%   { transform: rotate(0deg); }
+}
+@keyframes idle {
+    0%   { transform: rotate(0deg); }
+    25%   { transform: rotate(-1deg); }
+    75%   { transform: rotate(1deg); }
+    100%   { transform: rotate(0deg); }
+}
+
+#main {
+    width: 100%;
+    height: 100%;
+    background-color: #22b0b5;
+}
+
+#score {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#template {
+    display: none;
+}
+#penguin {
+    position: absolute;
+    transform-origin: bottom center;
+    animation: idle 2000ms cubic-bezier(0.25, 0.25, 0.25, 0.5) forwards infinite;
+}
+
+#penguin.moving {
+    animation: waddle 2000ms cubic-bezier(0.25, 0.25, 0.25, 0.5) forwards infinite;
+}
+
+.body {
+    height: 100px;
+    width: 75px;
+    transition: transform 200ms linear, height 200ms linear;
+}
+.black .body {
+    background-color: black;
+}
+#penguin.crouching .body {
+    height: 80px;
+    transform: translateY(20px);
+}
+#penguin.jumping .body {
+    height: 110px;
+    transform: translateY(-70px);
+}
+.eyes {
+    position: absolute;
+    top: 12px;
+    left: calc(50% - 16px);
+    height: 10px;
+    width: 33px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.eyes > div {
+    height: 3px;
+    width: 3px;
+    background-color: white;
+    border-radius: 3px;
+}
+.belly {
+    position: absolute;
+    bottom: 0px;
+    left: calc(50% - 23px);
+    background-color: white;
+    width: 45px;
+    height: 55px;
+    transition: height 200ms linear, margin-top 200ms linear;
+}
+.crouching .belly {
+    height: 40px;
+}
+.feet {
+    position: absolute;
+    bottom: -10px;
+    height: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.feet > div {
+    height: 10px;
+    width: 20px;
+    position: relative;
+    background-color: orange;
+}
+
+#penguin.moving .feet > div  {
+    animation: happyFeetLeft 1000ms infinite;
+}
+#penguin.moving .feet > div + div {
+    animation: happyFeetRight 1000ms infinite;
+}
+.beak {
+    position: absolute;
+    width: 1px;
+    height: 20px;
+    top: 20px;
+    left: calc(50% - 5px);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 15px solid orange;
+}
+
+/* Touch controls */
+#controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    width: calc(100% - 20px);
+    bottom: 8px;
+    left: 10px;;
+}
+#controls > div {
+    display: flex;
+    flex-direction: column;
+}
+#controls > div + div {
+    display: flex;
+    flex-direction: row;
+}
+#controls > div + div > div.touch-control {
+    padding-top: 0px;
+    margin-left: 5px;
+}
+.touch-control {
+    width: 65px;
+    height: 65px;
+    background-color: rgba(100,100,100, 0.5);
+    border-radius: 65px;
+    padding: 11px;
+    font-size: 45px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 5px;
+}
+.touch-control.rotate {
+    transform: rotate(180deg);
+}

@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/main.js"></script>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/penguins.css" />
+        <link rel="stylesheet" href="css/hearts.css" />
+        <link rel="stylesheet" href="css/hats.css" />
+    </head>
+    <body>
+        <div id="main">
+        </div>
+        <div id="controls">
+            <div>
+                <div class="touch-control" id="up">▲</div>
+                <div class="touch-control" id="down">▼</div>
+            </div>
+            <div>
+                <div class="touch-control rotate" id="left">➤</div>
+                <div class="touch-control" id="right">➤</div>
+            </div>
+        </div>
+        <div id="score">Score: <span id="count">0</span></div>
+        <div id="template">
+            <div id="penguin">
+                <div class="hat"></div>
+                <div class="body">
+                    <div class="face">
+                        <div class="eyes">
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="beak"></div>
+                    </div>
+                    <div class="torso">
+                        <div class="belly"></div>
+                    </div>
+                    <div class="feet">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div id="heart"></div>
+        </div>
+        <script type="text/javascript">
+            const game = new PenguinGame();
+        </script>
+    </body>
+</html>

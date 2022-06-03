@@ -1,0 +1,34 @@
+
+/* Heart */
+
+#heart {
+    position: absolute;
+    color: red;
+    font-size: 30px;
+    height: 30px;
+    width: 30px;
+}
+#heart:before {
+    content: '❤';
+}
+
+#penguin.spooky ~ #heart:before {
+    content: '👻';
+}
+
+#penguin.emma ~ #heart:before {
+    content: '🐟';
+}
+
+#penguin.victoria ~ #heart:before {
+    content: '🍦';
+}
+
+#penguin.ghost ~ #heart:before {
+    content: '🍭';
+}
+
+#penguin.mor ~ #heart:before {
+    content: '❄';
+    color: blue;
+}

@@ -1,0 +1,53 @@
+/* Bowler */
+.hat.bowler {
+    background-color: black;
+    width: 100%;
+    height: 40px;
+    border-radius: 60px 60px 0px 0px;
+    position: absolute;
+    top: -35px;
+}
+.hat.bowler:after {
+    content: '';
+    height: 9px;
+    width: 120%;
+    position: absolute;
+    bottom: 0px;
+    left: -10%;
+    background-color: black;
+}
+
+/* Nisse */
+
+.hat.nisse {
+    width: 1px;
+    height: 40px;
+    top: -120px;
+    border-left: 37px solid transparent;
+    border-right: 37px solid transparent;
+    border-bottom: 80px solid red;
+    position: absolute;
+}
+.hat.nisse:before {
+    content: '';
+    position: absolute;
+    top: 29px;
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: 0px 0px 6px 3px #FFF;
+}
+.hat.nisse:after {
+    content: '';
+    position: absolute;
+    width: 90px;
+    top: 115px;
+    left: -44px;
+    height: 10px;
+    background-color: white;
+    box-shadow: 0px 0px 6px 3px #FFF;
+    border-radius: 10px;
+}

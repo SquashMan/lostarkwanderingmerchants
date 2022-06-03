@@ -27,6 +27,10 @@ html {
     touch-action: manipulation;
 }
 
+* {
+    touch-action: manipulation;
+}
+
 #main {
     width: 100%;
     height: 100%;

@@ -15,9 +15,10 @@ class PenguinGame {
         this.touchCheats = [
             {cheat: 'UpUpDownDownLeftLeftRightRight', class: 'emma'},
             {cheat: 'DownDownUpUpRightRightLeftLeft', class: 'black'},
-            {cheat: 'UpUpUpUpUpUpUpUpUp', class: 'big'}],
+            {cheat: 'UpUpUpUpUpUpUpUpUp', class: 'big'},
             {cheat: 'DownDownDownDownDownDownDownDownDown', class: 'small'},
             {cheat: 'LeftLeftLeftLeftLeftLeftLeftLeftLeft', class: 'normal'}
+        ];
         this.cheatWord = '';
         this.jumping = false;
         this.score = 0;

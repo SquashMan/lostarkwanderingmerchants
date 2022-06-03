@@ -287,31 +287,39 @@ class PenguinGame {
         });
         // Touch events
         document.querySelector('#up').addEventListener('touchstart', (e) => {
+            e.preventDefault();
             this.setDirection("Up");
             this.checkForCheats("Up");
         });
         document.querySelector('#up').addEventListener('touchend', (e) => {
+            e.preventDefault();
             this.unsetDirection("Up");
         });
         document.querySelector('#down').addEventListener('touchstart', (e) => {
+            e.preventDefault();
             this.setDirection("Down");
             this.checkForCheats("Down");
         });
         document.querySelector('#down').addEventListener('touchend', (e) => {
+            e.preventDefault();
             this.unsetDirection("Down");
         });
         document.querySelector('#left').addEventListener('touchstart', (e) => {
+            e.preventDefault();
             this.setDirection("Left");
             this.checkForCheats("Left");
         });
         document.querySelector('#left').addEventListener('touchend', (e) => {
+            e.preventDefault();
             this.unsetDirection("Left");
         });
         document.querySelector('#right').addEventListener('touchstart', (e) => {
+            e.preventDefault();
             this.setDirection("Right");
             this.checkForCheats("Right");
         });
         document.querySelector('#right').addEventListener('touchend', (e) => {
+            e.preventDefault();
             this.unsetDirection("Right");
         });
         document.querySelector('body').addEventListener('dblclick', function(el) {

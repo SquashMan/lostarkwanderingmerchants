@@ -12,6 +12,12 @@ class PenguinGame {
         this.tempo = 10;
         this.start();
         this.cheats =  ['emma','black','spooky','big', 'small', 'normal', 'victoria', 'ghost', 'mor'];
+        this.touchCheats = [
+            {cheat: 'UpUpDownDownLeftLeftRightRight', class: 'emma'},
+            {cheat: 'DownDownUpUpRightRightLeftLeft', class: 'black'},
+            {cheat: 'UpUpUpUpUpUpUpUpUp', class: 'big'}],
+            {cheat: 'DownDownDownDownDownDownDownDownDown', class: 'small'},
+            {cheat: 'LeftLeftLeftLeftLeftLeftLeftLeftLeft', class: 'normal'}
         this.cheatWord = '';
         this.jumping = false;
         this.score = 0;
@@ -255,6 +261,16 @@ class PenguinGame {
                 }
             }
         })
+        this.touchCheats.map(cheat => {
+            if (this.cheatWord === cheat.cheat.substr(0, this.cheatWord.length)) {
+                hit = true;
+                if (this.cheatWord === cheat.cheat) {
+                    console.log(`${cheat.class} cheat activated`);
+                    this.activateCheat(cheat.class);
+                    this.resetCheat();
+                }
+            }
+        })
         if (!hit) {
             this.resetCheat();
         }
@@ -271,24 +287,28 @@ class PenguinGame {
         // Touch events
         document.querySelector('#up').addEventListener('touchstart', (e) => {
             this.setDirection("Up");
+            this.checkForCheats("Up");
         });
         document.querySelector('#up').addEventListener('touchend', (e) => {
             this.unsetDirection("Up");
         });
         document.querySelector('#down').addEventListener('touchstart', (e) => {
             this.setDirection("Down");
+            this.checkForCheats("Down");
         });
         document.querySelector('#down').addEventListener('touchend', (e) => {
             this.unsetDirection("Down");
         });
         document.querySelector('#left').addEventListener('touchstart', (e) => {
             this.setDirection("Left");
+            this.checkForCheats("Left");
         });
         document.querySelector('#left').addEventListener('touchend', (e) => {
             this.unsetDirection("Left");
         });
         document.querySelector('#right').addEventListener('touchstart', (e) => {
             this.setDirection("Right");
+            this.checkForCheats("Right");
         });
         document.querySelector('#right').addEventListener('touchend', (e) => {
             this.unsetDirection("Right");

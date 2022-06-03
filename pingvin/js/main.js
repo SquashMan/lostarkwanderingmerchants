@@ -314,5 +314,8 @@ class PenguinGame {
         document.querySelector('#right').addEventListener('touchend', (e) => {
             this.unsetDirection("Right");
         });
+        document.querySelector('body').addEventListener('dblclick', function(el) {
+            el.preventDefault();
+        });
     }
 }
